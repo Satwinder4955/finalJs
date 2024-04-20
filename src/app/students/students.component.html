@@ -1,0 +1,33 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <!-- Add more columns if needed -->
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <!-- Add more columns if needed -->
+        <td>
+          <button (click)="updateStudent(student.id)">Update</button>
+          <button (click)="deleteStudent(student.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <button (click)="createNewStudent()">Create New Student</button>
+  
+  <form *ngIf="isCreating || isUpdating" (ngSubmit)="submitForm()">
+    <input type="text" placeholder="Name" [(ngModel)]="student.name" name="name">
+    <input type="number" placeholder="Age" [(ngModel)]="student.age" name="age">
+    <!-- Add more input fields if needed -->
+    <button type="submit">{{ isCreating ? 'Create' : 'Update' }} Student</button>
+  </form>
+  
